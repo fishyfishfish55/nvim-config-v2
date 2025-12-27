@@ -1,5 +1,4 @@
 return {
-  { "neovim/nvim-lspconfig" },
   {
     "mason-org/mason-lspconfig.nvim",
     opts = {},
@@ -7,5 +6,8 @@ return {
       { "mason-org/mason.nvim", opts = {} },
       "neovim/nvim-lspconfig",
     },
+    config = function()
+      require("mason-lspconfig").setup()
+    end
   },
 }
