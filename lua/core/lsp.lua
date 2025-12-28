@@ -7,6 +7,8 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
+require("langs")
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
     -- which-key labels (safe + optional)
