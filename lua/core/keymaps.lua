@@ -8,11 +8,13 @@ local opts = { noremap = true, silent = true }
 
 -- ── Basic quality-of-life ─────────────────────────────────────
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
+map("n", "<leader>p", '"*p', opts)
+map("n", "<leader>y", '"*y', opts)
 
 -- ── Window navigation ──────────────────────────────────────────
 -- Moving between windows done with nvim-tmux-navigation in plugins.editor
 map("n", "<leader>wv", "<cmd>vsplit<CR>", opts)
-map("n", "<leader>ws", "<cmd>split<CR>", opts)
+map("n", "<leader>wh", "<cmd>split<CR>", opts)
 map("n", "<leader>wq", "<cmd>close<CR>", opts)
 
 -- Resize splits
