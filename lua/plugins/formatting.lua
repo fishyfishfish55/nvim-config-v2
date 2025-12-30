@@ -1,7 +1,6 @@
 -- lua/plugins/formatting.lua
 return {
-  {
-    "stevearc/conform.nvim",
-  },
+	{
+		"stevearc/conform.nvim",
+	},
 }
-

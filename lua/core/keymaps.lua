@@ -16,9 +16,9 @@ map("n", "<leader>ws", "<cmd>split<CR>", opts)
 map("n", "<leader>wq", "<cmd>close<CR>", opts)
 
 -- Resize splits
-map("n", "<C-Up>",    "<cmd>resize -2<CR>", opts)
-map("n", "<C-Down>",  "<cmd>resize +2<CR>", opts)
-map("n", "<C-Left>",  "<cmd>vertical resize -2<CR>", opts)
+map("n", "<C-Up>", "<cmd>resize -2<CR>", opts)
+map("n", "<C-Down>", "<cmd>resize +2<CR>", opts)
+map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", opts)
 map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 
 -- ── Buffer navigation ──────────────────────────────────────────
@@ -35,4 +35,3 @@ map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
 -- ── Terminal ───────────────────────────────────────────────────
 map("n", "<leader>tt", "<cmd>terminal<CR>", opts)
 map("t", "<Esc>", "<C-\\><C-n>", opts)
-
