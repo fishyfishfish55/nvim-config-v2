@@ -11,7 +11,7 @@ return {
 				default = { "lsp", "path", "snippets", "buffer" },
 			},
 			keymap = {
-				preset = "super-tab",
+				preset = "default",
 			},
 			completion = {
 				documentation = { auto_show = true },
