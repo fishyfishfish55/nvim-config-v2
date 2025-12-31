@@ -16,15 +16,6 @@ vim.api.nvim_create_autocmd("VimResized", {
   end,
 })
 
-vim.api.nvim_create_autocmd("TermOpen", {
-  group = augroup("terminal"),
-  callback = function(event)
-    vim.bo[event.buf].number = false
-    vim.bo[event.buf].relativenumber = false
-    vim.cmd("startinsert")
-  end,
-})
-
 vim.api.nvim_create_autocmd("CursorHold", {
   group = augroup("diagnostic_float"),
   callback = function()

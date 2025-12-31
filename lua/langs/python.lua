@@ -2,6 +2,8 @@
 local conform = require("conform")
 local lint = require("lint")
 
+vim.opt.shiftwidth = 4
+
 vim.lsp.enable("basedpyright")
 
 -- formatter preference order

@@ -26,14 +26,14 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 -- ── Buffer navigation ──────────────────────────────────────────
 map("n", "<S-l>", "<cmd>bnext<CR>", opts)
 map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
+map("n", "<leader>bb", "<cmd>Telescope buffers<CR>", opts)
 map("n", "<leader>bd", "<cmd>bdelete<CR>", opts)
 
 -- ── File / search (Telescope) ──────────────────────────────────
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
 
 -- ── Terminal ───────────────────────────────────────────────────
-map("n", "<leader>tt", "<cmd>terminal<CR>", opts)
+map("n", "<leader>t", "<cmd>terminal<CR>", opts)
 map("t", "<Esc>", "<C-\\><C-n>", opts)
