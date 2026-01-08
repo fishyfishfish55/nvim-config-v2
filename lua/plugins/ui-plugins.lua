@@ -5,12 +5,14 @@ return {
       require("lualine").setup({
         options = { theme = "gruvbox" },
         sections = {
-          lualine_a = { {
-            "mode",
-            fmt = function(str)
-              return str:sub(1, 1)
-            end,
-          } },
+          lualine_a = {
+            {
+              "mode",
+              fmt = function(str)
+                return str:sub(1, 1)
+              end,
+            },
+          },
           lualine_b = {},
           lualine_c = { { "filename", path = 1, symbols = { modified = "⭑" } } },
           lualine_x = { "filetype" },

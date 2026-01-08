@@ -4,36 +4,36 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
 
 -- ── Basic quality-of-life ─────────────────────────────────────
-map("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
-map("n", "<leader>p", '"*p', opts)
-map("n", "<leader>y", '"*y', opts)
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
+map("n", "<leader>p", '"*p', { noremap = true, silent = true, desc = "paste from system clipboard" })
+map("n", "<leader>y", '"*y', { noremap = true, silent = true, desc = "copy to system clipboard" })
 
 -- ── Window navigation ──────────────────────────────────────────
 -- Moving between windows done with nvim-tmux-navigation in plugins.editor
-map("n", "<leader>wv", "<cmd>vsplit<CR>", opts)
-map("n", "<leader>wh", "<cmd>split<CR>", opts)
-map("n", "<leader>wq", "<cmd>close<CR>", opts)
+map("n", "<leader>wv", "<cmd>vsplit<CR>", { noremap = true, silent = true, desc = "Split window vertically" })
+map("n", "<leader>wh", "<cmd>split<CR>", { noremap = true, silent = true, desc = "Split window horizontally" })
+map("n", "<leader>wq", "<cmd>close<CR>", { noremap = true, silent = true, desc = "Close window" })
 
 -- Resize splits
-map("n", "<C-Up>", "<cmd>resize -2<CR>", opts)
-map("n", "<C-Down>", "<cmd>resize +2<CR>", opts)
-map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", opts)
-map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
+map("n", "<C-Up>", "<cmd>resize -2<CR>", { noremap = true, silent = true })
+map("n", "<C-Down>", "<cmd>resize +2<CR>", { noremap = true, silent = true })
+map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { noremap = true, silent = true })
+map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { noremap = true, silent = true })
 
 -- ── Buffer navigation ──────────────────────────────────────────
-map("n", "<S-l>", "<cmd>bnext<CR>", opts)
-map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
-map("n", "<leader>bb", "<cmd>Telescope buffers<CR>", opts)
-map("n", "<leader>bd", "<cmd>bdelete<CR>", opts)
+map("n", "<S-l>", "<cmd>bnext<CR>", { noremap = true, silent = true })
+map("n", "<S-h>", "<cmd>bprevious<CR>", { noremap = true, silent = true })
+map("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true, desc = "Current buffers" })
+map("n", "<leader>bd", "<cmd>bdelete<CR>", { noremap = true, silent = true, desc = "Close buffer" })
 
 -- ── File / search (Telescope) ──────────────────────────────────
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
-map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
+local builtin = require("telescope.builtin")
+
+map("n", "<leader>ff", builtin.find_files, { noremap = true, silent = true, desc = "Find files" })
+map("n", "<leader>fg", builtin.live_grep, { noremap = true, silent = true, desc = "Grep files" })
+map("n", "<leader>fh", builtin.help_tags, { noremap = true, silent = true, desc = "Help tags" })
 
 -- ── Terminal ───────────────────────────────────────────────────
-map("n", "<leader>t", "<cmd>terminal<CR>", opts)
-map("t", "<Esc>", "<C-\\><C-n>", opts)
+map("n", "<leader>t", "<cmd>Lspsaga term_toggle<CR>", { noremap = true, silent = true, desc = "terminal" })

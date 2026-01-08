@@ -9,4 +9,14 @@ return {
       "neovim/nvim-lspconfig",
     },
   },
+  {
+    "nvimdev/lspsaga.nvim",
+    opts = {
+      LightBulb = { enable = false },
+    },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
 }

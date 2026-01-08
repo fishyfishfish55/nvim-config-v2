@@ -8,6 +8,7 @@ vim.diagnostic.config({
 })
 
 require("langs")
+local builtin = require("telescope.builtin")
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
@@ -16,18 +17,31 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if ok then
       wk.add({
         { "<leader>l", group = "+lsp" },
-        { "<leader>ld", vim.lsp.buf.definition, desc = "Go to definition" },
-        { "<leader>lr", vim.lsp.buf.references, desc = "Go to reference" },
-        { "<leader>li", vim.lsp.buf.implementation, desc = "Go to implementation" },
+        { "<leader>ld", builtin.lsp_definitions, desc = "Go to definition" },
+        { "<leader>lD", "<cmd>Lspsaga peek_definition<CR>", desc = "Peek definition" },
+        { "<leader>lr", builtin.lsp_references, desc = "Go to reference" },
+        { "<leader>li", builtin.lsp_implementations, desc = "Go to implementation" },
 
-        { "<leader>ln", vim.lsp.buf.rename, desc = "Rename symbol" },
-        { "<leader>la", vim.lsp.buf.code_action, desc = "Code action" },
+        { "<leader>ln", "<cmd>Lspsaga rename<CR>", desc = "Rename symbol" },
+        { "<leader>la", "<cmd>Lspsaga code_action<CR>", desc = "Code action" },
 
         { "<leader>le", vim.diagnostic.open_float, desc = "Diagnostics (float)" },
-        { "<leader>l[", vim.diagnostic.goto_prev, desc = "Previous diagnostic" },
-        { "<leader>l]", vim.diagnostic.goto_next, desc = "Next diagnostic" },
+        {
+          "<leader>l[",
+          function()
+            vim.diagnostic.jump({ count = -1, float = true })
+          end,
+          desc = "Previous diagnostic",
+        },
+        {
+          "<leader>l]",
+          function()
+            vim.diagnostic.jump({ count = 1, float = true })
+          end,
+          desc = "Next diagnostic",
+        },
 
-        { "K", vim.lsp.buf.hover, desc = "Hover documentation" },
+        { "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover documentation" },
       }, {
         buffer = event.buf,
         mode = "n",
