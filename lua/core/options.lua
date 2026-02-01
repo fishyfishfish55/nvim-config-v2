@@ -18,9 +18,9 @@ opt.backup = false -- This is recommended by coc
 -- opt.autochdir = true                    -- Your working directory will always be the same as your working directory
 
 -- indentation
-opt.expandtab = true
-opt.tabstop = 4 -- Insert 2 spaces for a tab
+opt.softtabstop = 2 -- Insert 2 spaces for a tab
 opt.shiftwidth = 2 -- Change the number of space characters inserted for indentation
+opt.expandtab = true
 opt.smarttab = true -- Makes tabbing smarter will realize you have 2 vs 4
 opt.smartindent = true -- Makes indenting smart
 opt.autoindent = true -- Good auto indent
