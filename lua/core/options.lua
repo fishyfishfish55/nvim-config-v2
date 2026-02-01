@@ -45,9 +45,8 @@ opt.splitright = true -- Vertical splits will automatically be to the right
 opt.inccommand = "split"
 
 -- folds
--- opt.foldmethod = "expr"
+opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldlevel = 20
 
 -- searching
 opt.hlsearch = false
