@@ -1,2 +1,5 @@
 # ignore lazy-lock
 lazy-lock.*
+
+# ignore vim files
+*~
