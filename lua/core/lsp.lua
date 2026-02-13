@@ -46,23 +46,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         buffer = event.buf,
         mode = "n",
       })
-      local fmt_ok, fmt = pcall(require, "utils.format")
-      if fmt_ok then
-        wk.add({
-          { "<leader>lf", fmt.format, desc = "Format", mode = "n", buffer = event.buf },
-        })
-      end
-    end
-
-    -- Format on save (buffer-local)
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client.server_capabilities.documentFormattingProvider then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = event.buf,
-        callback = function()
-          require("conform").format({ bufnr = event.buf })
-        end,
-      })
     end
   end,
 })
