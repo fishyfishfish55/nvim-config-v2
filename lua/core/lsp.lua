@@ -7,7 +7,6 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-require("langs")
 local builtin = require("telescope.builtin")
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -26,6 +25,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         { "<leader>la", "<cmd>Lspsaga code_action<CR>", desc = "Code action" },
 
         { "<leader>le", vim.diagnostic.open_float, desc = "Diagnostics (float)" },
+        {
+          "<leader>lf",
+          function()
+            require("conform").format({ bufnr = event.buf })
+          end,
+          desc = "Format",
+        },
         {
           "<leader>l[",
           function()
@@ -47,5 +53,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
         mode = "n",
       })
     end
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*",
+      callback = function(args)
+        require("conform").format({ bufnr = args.buf })
+      end,
+    })
   end,
 })
+
+require("langs")

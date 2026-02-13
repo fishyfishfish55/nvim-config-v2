@@ -52,7 +52,7 @@ opt.inccommand = "split"
 
 -- folds {{{
 opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 --}}}
 
 -- searching {{{
