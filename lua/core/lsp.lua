@@ -7,7 +7,6 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-require("langs")
 local builtin = require("telescope.builtin")
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -26,6 +25,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         { "<leader>la", "<cmd>Lspsaga code_action<CR>", desc = "Code action" },
 
         { "<leader>le", vim.diagnostic.open_float, desc = "Diagnostics (float)" },
+        {
+          "<leader>lf",
+          function()
+            require("conform").format({ bufnr = event.buf })
+          end,
+          desc = "Format",
+        },
         {
           "<leader>l[",
           function()
@@ -46,23 +52,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
         buffer = event.buf,
         mode = "n",
       })
-      local fmt_ok, fmt = pcall(require, "utils.format")
-      if fmt_ok then
-        wk.add({
-          { "<leader>lf", fmt.format, desc = "Format", mode = "n", buffer = event.buf },
-        })
-      end
     end
 
-    -- Format on save (buffer-local)
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client.server_capabilities.documentFormattingProvider then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = event.buf,
-        callback = function()
-          require("conform").format({ bufnr = event.buf })
-        end,
-      })
-    end
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*",
+      callback = function(args)
+        require("conform").format({ bufnr = args.buf })
+      end,
+    })
   end,
 })
+
+require("langs")

@@ -33,7 +33,7 @@ opt.autoindent = true -- Good auto indent
 opt.list = true
 opt.listchars = "tab:>-,trail:~,extends:>,precedes:<,space:·"
 opt.cursorline = true -- Enable highlighting of the current line
-opt.background = "dark" -- tell vim what the background color looks like
+-- opt.background = "dark" -- tell vim what the background color looks like
 opt.showmode = false -- We don't need to see things like -- INSERT -- anymore
 opt.showtabline = 2 -- Always show tabs
 opt.number = true -- Line numbers
@@ -52,7 +52,7 @@ opt.inccommand = "split"
 
 -- folds {{{
 opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 --}}}
 
 -- searching {{{

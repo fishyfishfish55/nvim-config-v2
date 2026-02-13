@@ -22,3 +22,10 @@ vim.api.nvim_create_autocmd("CursorHold", {
     vim.diagnostic.open_float(nil, { focus = false })
   end,
 })
+
+vim.api.nvim_create_autocmd({"BufReadPost", "FileReadPost"}, {
+  group = augroup("unfold folds"),
+  callback = function()
+    vim.cmd("normal zR")
+  end,
+})
