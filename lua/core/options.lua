@@ -39,6 +39,7 @@ opt.showtabline = 2 -- Always show tabs
 opt.number = true -- Line numbers
 opt.relativenumber = true -- Relative line numbers
 opt.wrap = true -- Display long lines as just one line
+opt.linebreak = true -- Don't break words when wrapping
 opt.ruler = true -- Show the cursor position all the time
 opt.signcolumn = "yes"
 opt.laststatus = 2 -- Always display the status line
