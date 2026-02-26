@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "c",
   group = vim.api.nvim_create_augroup("c_setup", { clear = true }),
   callback = function(opts)
-    conform.formatters_by_ft.c = { "clang-format" }
+    conform.formatters_by_ft.c = { "clang_format" }
   end,
 })
 
@@ -60,6 +60,11 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "cpp",
   group = vim.api.nvim_create_augroup("cpp_setup", { clear = true }),
   callback = function(opts)
-    conform.formatters_by_ft.cpp = { "clang-format" }
+    conform.formatters.clang_format = {
+        append_args = function()
+            return { "--style={BasedOnStyle: Google, IndentWidth: 4}" }
+        end
+    }
+    conform.formatters_by_ft.cpp = { "clang_format" }
   end,
 })
