@@ -21,6 +21,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         { "<leader>lr", builtin.lsp_references, desc = "Go to reference" },
         { "<leader>li", builtin.lsp_implementations, desc = "Go to implementation" },
 
+        { "<leader>lo", "<cmd>Lspsaga outline<CR>", desc = "Code outline" },
+
         { "<leader>ln", "<cmd>Lspsaga rename<CR>", desc = "Rename symbol" },
         { "<leader>la", "<cmd>Lspsaga code_action<CR>", desc = "Code action" },
 
