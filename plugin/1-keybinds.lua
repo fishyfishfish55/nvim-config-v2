@@ -18,6 +18,9 @@ require("which-key").setup({
 
 require("telescope").setup()
 
+vim.opt.timeout = true
+vim.opt.timeoutlen = 300
+
 local nvim_tmux_nav = require("nvim-tmux-navigation")
 nvim_tmux_nav.setup({
   disable_when_zoomed = true, -- defaults to false
@@ -29,6 +32,10 @@ local map = vim.keymap.set
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
 map("n", "<leader>p", '"*p', { noremap = true, silent = true, desc = "paste from system clipboard" })
 map("n", "<leader>y", '"*y', { noremap = true, silent = true, desc = "copy to system clipboard" })
+
+vim.cmd.packadd("nvim.undotree")
+map("n", "<leader>u", require("undotree").open, { noremap = true, silent = true, desc = "copy to system clipboard" })
+
 map("n", "<leader>S", function()
   vim.pack.update()
 end, { noremap = true, silent = true, desc = "Update packages" })
@@ -42,7 +49,6 @@ map("n", "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
 map("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
 map("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
 map("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
-map("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 
 -- Resize splits
 map("n", "<C-Up>", "<cmd>resize -2<CR>", { noremap = true, silent = true })
@@ -65,6 +71,3 @@ map("n", "<leader>fh", telescope.help_tags, { noremap = true, silent = true, des
 
 -- ── Terminal ───────────────────────────────────────────────────
 map("n", "<leader>t", "<cmd>Lspsaga term_toggle<CR>", { noremap = true, silent = true, desc = "terminal" })
-
-vim.opt.timeout = true
-vim.opt.timeoutlen = 300

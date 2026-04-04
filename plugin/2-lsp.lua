@@ -8,13 +8,15 @@ vim.pack.add({
   "https://github.com/stevearc/conform.nvim",
 })
 
+local lint = require("lint")
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
   callback = function()
-    require("lint").try_lint()
+    lint.try_lint()
   end,
 })
 
-require("conform").setup()
+local conform = require("conform")
+conform.setup()
 
 vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
 
@@ -52,7 +54,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         {
           "<leader>lf",
           function()
-            require("conform").format({ bufnr = event.buf })
+            conform.format({ bufnr = event.buf })
           end,
           desc = "Format",
         },
@@ -81,14 +83,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*",
       callback = function(args)
-        require("conform").format({ bufnr = args.buf })
+        conform.format({ bufnr = args.buf })
       end,
     })
   end,
 })
-
-local conform = require("conform")
-local lint = require("lint")
 
 -- Set up Lua
 vim.lsp.config("lua_ls", {
