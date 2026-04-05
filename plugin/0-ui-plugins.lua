@@ -1,3 +1,5 @@
+require("vim._core.ui2").enable({ enable = true })
+
 vim.pack.add({
   "https://github.com/nvim-lualine/lualine.nvim",
   "https://github.com/sainnhe/gruvbox-material",
@@ -32,3 +34,6 @@ require("gitsigns").setup({
     delay = 200,
   },
 })
+
+-- New difftool
+vim.cmd.packadd("nvim.difftool")
