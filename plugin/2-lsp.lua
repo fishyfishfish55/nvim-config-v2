@@ -54,16 +54,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local ok, wk = pcall(require, "which-key")
     if ok then
       wk.add({
-        { "<leader>l", group = "+lsp" },
-        { "<leader>ld", builtin.lsp_definitions, desc = "Go to definition" },
-        { "<leader>lD", "<cmd>Lspsaga peek_definition<CR>", desc = "Peek definition" },
-        { "<leader>lr", builtin.lsp_references, desc = "Go to reference" },
-        { "<leader>li", builtin.lsp_implementations, desc = "Go to implementation" },
-
-        { "<leader>ln", "<cmd>Lspsaga rename<CR>", desc = "Rename symbol" },
-        { "<leader>la", "<cmd>Lspsaga code_action<CR>", desc = "Code action" },
-
-        { "<leader>le", vim.diagnostic.open_float, desc = "Diagnostics (float)" },
+        { "grn", "<cmd>Lspsaga rename<CR>", desc = "Rename symbol" },
+        { "gra", "<cmd>Lspsaga code_action<CR>", desc = "Code action" },
+        { "gro", "<cmd>Lspsaga outline<CR>", desc = "Code outline" },
         {
           "<leader>lf",
           function()

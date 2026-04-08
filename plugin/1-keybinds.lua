@@ -13,6 +13,7 @@ require("which-key").setup({
     { "<leader>f", group = "find" },
     { "<leader>t", group = "terminal" },
     { "<leader>w", group = "windows" },
+    { "<leader>h", group = "git" },
   },
 })
 
@@ -71,3 +72,29 @@ map("n", "<leader>fh", telescope.help_tags, { noremap = true, silent = true, des
 
 -- ── Terminal ───────────────────────────────────────────────────
 map("n", "<leader>t", "<cmd>Lspsaga term_toggle<CR>", { noremap = true, silent = true, desc = "terminal" })
+
+-- ── Git actions ───────────────────────────────────────────────────
+local gitsigns = require("gitsigns")
+map('n', '<leader>hs', gitsigns.stage_hunk, { noremap = true, silent = true, desc = "stage hunk" })
+map('n', '<leader>hr', gitsigns.reset_hunk, { noremap = true, silent = true, desc = "reset hunk" })
+
+map('v', '<leader>hs', function() gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, { noremap = true, silent = true, desc = "stage hunk" })
+
+map('v', '<leader>hr', function() gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, { noremap = true, silent = true, desc = "reset hunk" })
+
+map('n', '<leader>hS', gitsigns.stage_buffer, { noremap = true, silent = true, desc = "stage buffer" })
+map('n', '<leader>hR', gitsigns.reset_buffer, { noremap = true, silent = true, desc = "stage buffer" })
+map('n', '<leader>hp', gitsigns.preview_hunk, { noremap = true, silent = true, desc = "preview hunk" })
+map('n', '<leader>hi', gitsigns.preview_hunk_inline, { noremap = true, silent = true, desc = "preview hunk (inline)" })
+
+map('n', '<leader>hb', function() gitsigns.blame_line({ full = true }) end, { noremap = true, silent = true, desc = "line blame" })
+
+map('n', '<leader>hd', gitsigns.diffthis, { noremap = true, silent = true, desc = "diff this" })
+
+map('n', '<leader>hD', function() gitsigns.diffthis('~') end, { noremap = true, silent = true, desc = "diff this" })
+
+map('n', '<leader>hQ', function() gitsigns.setqflist('all') end, { noremap = true, silent = true, desc = "See all hunks" })
+map('n', '<leader>hq', gitsigns.setqflist, { noremap = true, silent = true, desc = "Add hunk to quickfix list" })
+
+-- Text object
+map({'o', 'x'}, 'ih', gitsigns.select_hunk, { noremap = true, silent = true, desc = "select hunk" })

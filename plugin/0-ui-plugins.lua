@@ -3,6 +3,9 @@ require("vim._core.ui2").enable({ enable = true })
 vim.pack.add({
   "https://github.com/nvim-lualine/lualine.nvim",
   "https://github.com/sainnhe/gruvbox-material",
+  "https://github.com/nvim-mini/mini.surround",
+  "https://github.com/nvim-mini/mini.ai",
+  "https://github.com/nvim-mini/mini.pairs",
   "https://github.com/lewis6991/gitsigns.nvim",
 })
 
