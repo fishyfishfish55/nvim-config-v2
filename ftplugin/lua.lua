@@ -3,7 +3,7 @@ local lint = require("lint")
 local conform = require("conform")
 local treesitter = require("nvim-treesitter")
 
-treesitter.install({ "lua" })
+-- treesitter.install({ "lua" })
 
 vim.lsp.config("lua_ls", {
   on_init = function(client)

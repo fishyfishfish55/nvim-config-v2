@@ -3,11 +3,11 @@ local conform = require("conform")
 local treesitter = require("nvim-treesitter")
 
 -- Setup cpp
-treesitter.install({ "cpp" })
+-- treesitter.install({ "cpp" })
 vim.lsp.enable("clangd")
 conform.formatters.clang_format = {
   append_args = function()
-    return { "--style={BasedOnStyle: Google, IndentWidth: 4}" }
+    return { "--style={BasedOnStyle: Google, IndentWidth: 4} --include-directory=/shared/gcc-native/openmpi-4.1.6/include" }
   end,
 }
 conform.formatters_by_ft.cpp = { "clang_format" }

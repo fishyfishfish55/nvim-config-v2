@@ -3,7 +3,7 @@ local conform = require("conform")
 local treesitter = require("nvim-treesitter")
 
 -- Setup CUDA
-treesitter.install({ "cuda" })
+-- treesitter.install({ "cuda" })
 vim.lsp.enable("clangd")
 conform.formatters.clang_format = {
   append_args = function()
