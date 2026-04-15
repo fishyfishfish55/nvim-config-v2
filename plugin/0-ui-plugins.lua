@@ -9,6 +9,10 @@ vim.pack.add({
   "https://github.com/lewis6991/gitsigns.nvim",
 })
 
+require("mini.surround").setup()
+require("mini.ai").setup()
+require("mini.pairs").setup()
+
 require("lualine").setup({
   options = { theme = "gruvbox" },
   sections = {
