@@ -31,8 +31,8 @@ local map = vim.keymap.set
 
 -- ── Basic quality-of-life ─────────────────────────────────────
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
-map("n", "<leader>p", '"*p', { noremap = true, silent = true, desc = "paste from system clipboard" })
-map("n", "<leader>y", '"*y', { noremap = true, silent = true, desc = "copy to system clipboard" })
+map("n", "<leader>p", '"+p', { noremap = true, silent = true, desc = "paste from system clipboard" })
+map("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = "copy to system clipboard" })
 
 vim.cmd.packadd("nvim.undotree")
 map("n", "<leader>u", require("undotree").open, { noremap = true, silent = true, desc = "copy to system clipboard" })
