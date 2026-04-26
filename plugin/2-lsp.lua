@@ -57,6 +57,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         { "grn", "<cmd>Lspsaga rename<CR>", desc = "Rename symbol" },
         { "gra", "<cmd>Lspsaga code_action<CR>", desc = "Code action" },
         { "gro", "<cmd>Lspsaga outline<CR>", desc = "Code outline" },
+        { "grd", "<cmd>Lspsaga goto_definition<CR>", desc = "Goto definition" },
+        { "grt", "<cmd>Lspsaga goto_type_definition<CR>", desc = "Goto type definition" },
         {
           "<leader>lf",
           function()
