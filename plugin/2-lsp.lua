@@ -15,7 +15,6 @@ vim.pack.add({
   "https://github.com/mason-org/mason-lspconfig.nvim",
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/neovim/nvim-lspconfig",
-  "https://github.com/nvimdev/lspsaga.nvim",
   "https://github.com/nvim-tree/nvim-web-devicons",
   "https://github.com/stevearc/conform.nvim",
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
@@ -36,7 +35,6 @@ vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
 require("mason").setup()
 require("mason-lspconfig").setup({ automatic_enable = false })
 
-require("lspsaga").setup({ LightBulb = { enable = false } })
 -- Global LSP configuration
 vim.diagnostic.config({
   virtual_text = false,
@@ -54,11 +52,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local ok, wk = pcall(require, "which-key")
     if ok then
       wk.add({
-        { "grn", "<cmd>Lspsaga rename<CR>", desc = "Rename symbol" },
-        { "gra", "<cmd>Lspsaga code_action<CR>", desc = "Code action" },
-        { "gro", "<cmd>Lspsaga outline<CR>", desc = "Code outline" },
-        { "grd", "<cmd>Lspsaga goto_definition<CR>", desc = "Goto definition" },
-        { "grt", "<cmd>Lspsaga goto_type_definition<CR>", desc = "Goto type definition" },
+        { "grd", vim.lsp.buf.definition, desc = "Goto definition" },
         {
           "<leader>lf",
           function()
@@ -80,8 +74,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
           end,
           desc = "Next diagnostic",
         },
-
-        { "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover documentation" },
       }, {
         buffer = event.buf,
         mode = "n",
