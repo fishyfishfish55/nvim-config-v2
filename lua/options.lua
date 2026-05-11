@@ -49,6 +49,7 @@ opt.laststatus = 2 -- Always display the status line
 opt.splitbelow = true -- Horizontal splits will automatically be below
 opt.splitright = true -- Vertical splits will automatically be to the right
 opt.inccommand = "split"
+opt.scrolloff = 10
 --}}}
 
 -- folds {{{
