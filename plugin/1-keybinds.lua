@@ -12,7 +12,6 @@ require("which-key").setup({
     { "<leader>b", group = "buffers" },
     { "<leader>f", group = "find" },
     { "<leader>t", group = "terminal" },
-    { "<leader>w", group = "windows" },
     { "<leader>h", group = "git" },
   },
 })
@@ -31,8 +30,8 @@ local map = vim.keymap.set
 
 -- ── Basic quality-of-life ─────────────────────────────────────
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
-map("n", "<leader>p", '"+p', { noremap = true, silent = true, desc = "paste from system clipboard" })
-map("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = "copy to system clipboard" })
+map({"n", "v"}, "<leader>p", '"+p', { noremap = true, silent = true, desc = "paste from system clipboard" })
+map({"n", "v"}, "<leader>y", '"+y', { noremap = true, silent = true, desc = "copy to system clipboard" })
 
 vim.cmd.packadd("nvim.undotree")
 map("n", "<leader>u", require("undotree").open, { noremap = true, silent = true, desc = "copy to system clipboard" })
@@ -42,9 +41,6 @@ map("n", "<leader>S", function()
 end, { noremap = true, silent = true, desc = "Update packages" })
 
 -- ── Window navigation ──────────────────────────────────────────
-map("n", "<leader>wv", "<cmd>vsplit<CR>", { noremap = true, silent = true, desc = "Split window vertically" })
-map("n", "<leader>wh", "<cmd>split<CR>", { noremap = true, silent = true, desc = "Split window horizontally" })
-map("n", "<leader>wq", "<cmd>close<CR>", { noremap = true, silent = true, desc = "Close window" })
 map("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
 map("n", "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
 map("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
@@ -109,3 +105,47 @@ map("n", "<leader>hq", gitsigns.setqflist, { noremap = true, silent = true, desc
 
 -- Text object
 map({ "o", "x" }, "ih", gitsigns.select_hunk, { noremap = true, silent = true, desc = "select hunk" })
+
+-- ── LSP actions ───────────────────────────────────────────────────
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(event)
+    -- which-key labels (safe + optional)
+    local ok, wk = pcall(require, "which-key")
+    if ok then
+      wk.add({
+        { "grd", vim.lsp.buf.definition, desc = "Goto definition" },
+        { "gO", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+        {
+          "grs",
+          "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+          desc = "LSP definitions / references (Trouble)",
+        },
+        { "grf", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (trouble)" },
+        {
+          "<leader>lf",
+          function()
+            conform.format({ bufnr = event.buf })
+          end,
+          desc = "Format",
+        },
+        {
+          "<leader>l[",
+          function()
+            vim.diagnostic.jump({ count = -1, float = true })
+          end,
+          desc = "Previous diagnostic",
+        },
+        {
+          "<leader>l]",
+          function()
+            vim.diagnostic.jump({ count = 1, float = true })
+          end,
+          desc = "Next diagnostic",
+        },
+      }, {
+        buffer = event.buf,
+        mode = "n",
+      })
+    end
+  end,
+})
