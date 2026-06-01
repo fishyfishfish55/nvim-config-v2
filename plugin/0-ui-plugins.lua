@@ -7,6 +7,7 @@ vim.pack.add({
   "https://github.com/nvim-mini/mini.ai",
   "https://github.com/nvim-mini/mini.pairs",
   "https://github.com/lewis6991/gitsigns.nvim",
+  "https://github.com/nvimdev/lspsaga.nvim",
 })
 
 require("mini.surround").setup()
@@ -41,6 +42,8 @@ require("gitsigns").setup({
     delay = 200,
   },
 })
+
+require("lspsaga").setup({})
 
 -- New difftool
 vim.cmd.packadd("nvim.difftool")

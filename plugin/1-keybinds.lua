@@ -30,8 +30,8 @@ local map = vim.keymap.set
 
 -- ── Basic quality-of-life ─────────────────────────────────────
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { noremap = true, silent = true })
-map({"n", "v"}, "<leader>p", '"+p', { noremap = true, silent = true, desc = "paste from system clipboard" })
-map({"n", "v"}, "<leader>y", '"+y', { noremap = true, silent = true, desc = "copy to system clipboard" })
+map({ "n", "v" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "paste from system clipboard" })
+map({ "n", "v" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "copy to system clipboard" })
 
 vim.cmd.packadd("nvim.undotree")
 map("n", "<leader>u", require("undotree").open, { noremap = true, silent = true, desc = "copy to system clipboard" })
@@ -67,8 +67,7 @@ map("n", "<leader>fg", telescope.live_grep, { noremap = true, silent = true, des
 map("n", "<leader>fh", telescope.help_tags, { noremap = true, silent = true, desc = "Help tags" })
 
 -- ── Terminal ───────────────────────────────────────────────────
--- TODO: remap to non-lspsaga terminal
--- map("n", "<leader>t", "<cmd>Lspsaga term_toggle<CR>", { noremap = true, silent = true, desc = "terminal" })
+map("n", "<leader>t", "<cmd>Lspsaga term_toggle<CR>", { noremap = true, silent = true, desc = "terminal" })
 
 -- ── Git actions ───────────────────────────────────────────────────
 local gitsigns = require("gitsigns")
@@ -114,7 +113,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if ok then
       wk.add({
         { "grd", vim.lsp.buf.definition, desc = "Goto definition" },
-        { "gO", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+        { "gO", "<cmd>Trouble lsp_document_symbols toggle<cr>", desc = "Symbols (Trouble)" },
         {
           "grs",
           "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",

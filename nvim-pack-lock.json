@@ -21,6 +21,10 @@
       "rev": "afb275d8e6dc379762d122bd24e1773fc057abf3",
       "src": "https://github.com/sainnhe/gruvbox-material"
     },
+    "lspsaga.nvim": {
+      "rev": "3e33a6a6c5d379f3d4fae77fae6b53b762a0a30f",
+      "src": "https://github.com/nvimdev/lspsaga.nvim"
+    },
     "lualine.nvim": {
       "rev": "74114f0df664f14d7c228945693ba68a3b70a794",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
